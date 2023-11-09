@@ -46,6 +46,14 @@ if (WIN32)
             IMPORTED_IMPLIB ${CMAKE_CURRENT_SOURCE_DIR}/porting/windows/runtime/openssl/${CMAKE_WINDOWS_ARCH_ABI}/libssl.lib
     )
 
+    add_library(openal SHARED IMPORTED GLOBAL)
+    set_target_properties(
+            openal PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/porting/windows/runtime/openal/include
+            IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/porting/windows/runtime/openal/${CMAKE_WINDOWS_ARCH_ABI}/OpenAL32.dll
+            IMPORTED_IMPLIB ${CMAKE_CURRENT_SOURCE_DIR}/porting/windows/runtime/openal/${CMAKE_WINDOWS_ARCH_ABI}/OpenAL32.lib
+    )
+
     add_library(ffmpeg SHARED IMPORTED GLOBAL)
     set_target_properties(
             ffmpeg PROPERTIES
@@ -54,5 +62,5 @@ if (WIN32)
             IMPORTED_IMPLIB ${CMAKE_CURRENT_SOURCE_DIR}/porting/windows/runtime/ffmpeg/${CMAKE_WINDOWS_ARCH_ABI}/ffmpeg.lib
     )
 
-    set(WR_RUNTIME_LIBS EGL GLESv2 glfw3 crypto ssl ffmpeg)
+    set(WR_RUNTIME_LIBS EGL GLESv2 glfw3 crypto ssl openal ffmpeg)
 endif ()
