@@ -62,6 +62,6 @@ namespace bunny {
 #define LOGE(...) bunny::Logger::GetInstance().Tag(TAG).Error(__VA_ARGS__)
 #define LOGF(...) bunny::Logger::GetInstance().Tag(TAG).Fatal(__VA_ARGS__)
 
-#define LOG_LEVLE(__level) bunny::Logger::GetInstance().SetLevel(__level)
+#define LOG_LEVEL(__level) bunny::Logger::GetInstance().SetLevel(__level)
 
 #endif //bunny_LOG_H

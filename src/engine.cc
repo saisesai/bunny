@@ -6,7 +6,7 @@ bunny::Engine &bunny::Engine::GetInstance() {
 }
 
 bunny::Engine::Engine() {
-    LOG_LEVLE(bunny::Logger::Level::DEBUG);
+    LOG_LEVEL(bunny::Logger::Level::DEBUG);
     bunny::FileSystem::GetInstance();
     bunny::Logger::GetInstance().OpenFile();
 }
