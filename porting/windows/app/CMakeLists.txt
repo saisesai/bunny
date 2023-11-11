@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(white-rabbit-app)
+project(bunny-app)
 
-add_subdirectory(../../../ white-rabbit)
+add_subdirectory(../../../ bunny)
 
-add_executable(white-rabbit-app src/main.cc)
-target_link_libraries(white-rabbit-app PRIVATE white-rabbit)
+add_executable(bunny-app src/main.cc)
+target_link_libraries(bunny-app PRIVATE bunny)
 
-copy_runtime_dlls(white-rabbit-app)
+copy_runtime_dlls(bunny-app)
+copy_required_assets_desktop()

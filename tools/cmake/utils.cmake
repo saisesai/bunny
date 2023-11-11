@@ -9,3 +9,12 @@ function(copy_runtime_dlls)
             COMMAND_EXPAND_LISTS
     )
 endfunction()
+
+function(copy_required_assets_desktop)
+    set(BUNNY_ASSETS_ORI_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../assets)
+    set(BUNNY_ASSETS_DST_PATH ${CMAKE_CURRENT_BINARY_DIR}/assets)
+    configure_file(
+            "${BUNNY_ASSETS_ORI_PATH}/fonts/YaHei Consolas Hybrid 1.12.ttf"
+            "${BUNNY_ASSETS_DST_PATH}/fonts/YaHei Consolas Hybrid 1.12.ttf" COPYONLY
+    )
+endfunction()

@@ -34,5 +34,5 @@ add_library(
         ${CMAKE_CURRENT_SOURCE_DIR}/third_party/lua/lcorolib.c
         ${CMAKE_CURRENT_SOURCE_DIR}/third_party/lua/linit.c
 )
-target_link_libraries(lua PUBLIC ${WR_RUNTIME_LIBS})
+target_link_libraries(lua PUBLIC ${BUNNY_RUNTIME_LIBS})
 target_include_directories(lua PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/lua)

@@ -62,5 +62,5 @@ if (WIN32)
             IMPORTED_IMPLIB ${CMAKE_CURRENT_SOURCE_DIR}/porting/windows/runtime/ffmpeg/${CMAKE_WINDOWS_ARCH_ABI}/ffmpeg.lib
     )
 
-    set(WR_RUNTIME_LIBS EGL GLESv2 glfw3 crypto ssl openal ffmpeg)
+    set(BUNNY_RUNTIME_LIBS EGL GLESv2 glfw3 crypto ssl openal ffmpeg)
 endif ()
