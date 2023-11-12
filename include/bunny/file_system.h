@@ -45,13 +45,16 @@ namespace bunny {
         };
 
         class Assets {
+        public:
+            static std::string AbsolutePath(const std::string &path);
+
             static bool Exist(const std::string &path);
 
             static bool CreateDirectories(const std::string &path);
 
-            static std::fstream Open(const std::string &path);
+            static std::fstream Open(const std::string &path, std::ios_base::openmode mode);
 
-            static std::FILE *OpenC(const std::string &path);
+            static std::FILE *OpenC(const std::string &path, const char* mode);
         };
 
     public:

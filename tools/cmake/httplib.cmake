@@ -9,7 +9,11 @@ configure_file(
         ${CMAKE_CURRENT_BINARY_DIR}/httplib/httplib.h COPYONLY
 )
 
-execute_process(COMMAND python ${CMAKE_CURRENT_BINARY_DIR}/httplib/split.py
+if (WIN32)
+    set(_httplib_python3 python)
+endif ()
+
+execute_process(COMMAND ${_httplib_python3} ${CMAKE_CURRENT_BINARY_DIR}/httplib/split.py
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/httplib
         ERROR_VARIABLE _httplib_split_error
 )

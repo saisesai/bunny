@@ -16,7 +16,9 @@ set(
         BUNNY_LIB_SRCS
         ${CMAKE_CURRENT_SOURCE_DIR}/src/engine.cc
         ${CMAKE_CURRENT_SOURCE_DIR}/src/file_system.cc
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/image.cc
         ${CMAKE_CURRENT_SOURCE_DIR}/src/logger.cc
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/resource_manager.cc
 )
 
 # bunny lib include paths

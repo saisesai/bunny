@@ -51,3 +51,26 @@ std::FILE *bunny::FileSystem::Log::OpenC(const std::string &path, const char *mo
 std::string bunny::FileSystem::Log::AbsolutePath(const std::string &path) {
     return std::string(GetInstance().LogPath() + "/" + path);
 }
+
+std::string bunny::FileSystem::Assets::AbsolutePath(const std::string &path) {
+    return std::string(GetInstance().AssetsPath() + "/" + path);
+}
+
+bool bunny::FileSystem::Assets::Exist(const std::string &path) {
+    return exist(AbsolutePath(path));
+}
+
+bool bunny::FileSystem::Assets::CreateDirectories(const std::string &path) {
+    return createDirectories(AbsolutePath(path));
+}
+
+std::fstream bunny::FileSystem::Assets::Open(const std::string &path, std::ios_base::openmode mode) {
+    std::fstream f;
+    f.open(AbsolutePath(path).c_str(), mode);
+    return f;
+}
+
+std::FILE *bunny::FileSystem::Assets::OpenC(const std::string &path, const char *mode) {
+    std::FILE *f = std::fopen(AbsolutePath(path).c_str(), mode);
+    return f;
+}

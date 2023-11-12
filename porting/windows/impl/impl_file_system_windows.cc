@@ -7,16 +7,16 @@ namespace fs = std::filesystem;
 #include "bunny/logger.h"
 
 void bunny::FileSystem::getPath() {
-    mLogPath = "./log";
+    mLogPath = fs::absolute("./log").string();
     if (!exist(mLogPath)) createDirectories(mLogPath);
     LOGI("log path: %s", mLogPath.c_str());
-    mDataPath = "./data";
+    mDataPath = fs::absolute("./data").string();
     if (!exist(mDataPath)) createDirectories(mDataPath);
     LOGI("data path: %s", mDataPath.c_str());
-    mCachePath = "./cache";
+    mCachePath = fs::absolute("./cache").string();
     if (!exist(mCachePath)) createDirectories(mCachePath);
     LOGI("cache path: %s", mCachePath.c_str());
-    mAssetsPath = "./assets";
+    mAssetsPath = fs::absolute("./assets").string();
     if (!exist(mAssetsPath)) createDirectories(mAssetsPath);
     LOGI("assets path: %s", mAssetsPath.c_str());
 }

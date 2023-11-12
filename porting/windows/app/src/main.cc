@@ -7,13 +7,15 @@
 
 #include "bunny/engine.h"
 
+using namespace bunny;
+
 const char *TAG = "bunny::native";
 
 static GLFWwindow *window = nullptr;
 
-static ImVec2 windowDefaultSize = {1280, 720};
+static ImVec2 windowSize = {1280, 720};
 
-static float fontDefaultSize = windowDefaultSize.y / 24.0f;
+static float fontDefaultSize = windowSize.y / 24.0f;
 
 void glfw_error_callback(int error_code, const char *description);
 
@@ -38,7 +40,7 @@ int main() {
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     // Create window
-    window = glfwCreateWindow(int(windowDefaultSize.x), int(windowDefaultSize.y), "bunny", nullptr, nullptr);
+    window = glfwCreateWindow(int(windowSize.x), int(windowSize.y), "bunny", nullptr, nullptr);
     if (window == nullptr) {
         LOGF("failed to create window!");
     }
@@ -53,11 +55,14 @@ int main() {
     ImGuiIO &io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad; // Enable Gamepad Controls
+    io.IniFilename = nullptr;
 
     // Setup font
     LOGI("loading font textures ...");
-    io.Fonts->AddFontFromFileTTF("./assets/fonts/YaHei Consolas Hybrid 1.12.ttf", fontDefaultSize,
-                                 nullptr, io.Fonts->GetGlyphRangesChineseFull());
+    io.Fonts->AddFontFromFileTTF(
+            (FileSystem::Assets::AbsolutePath("fonts/YaHei Consolas Hybrid 1.12.ttf")).c_str(),
+            fontDefaultSize,
+            nullptr, io.Fonts->GetGlyphRangesChineseFull());
     io.Fonts->Build();
 
     // Setup Dear ImGui style
@@ -71,6 +76,7 @@ int main() {
     // Our state
     bool show_demo_window = true;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    Image avatarImage(FileSystem::GetInstance().CachePath() + "/images/avatar2.jpg");
 
     glfwShowWindow(window);
     while (!glfwWindowShouldClose(window)) {
@@ -82,6 +88,22 @@ int main() {
 
         if (show_demo_window)
             ImGui::ShowDemoWindow(&show_demo_window);
+
+        {
+            ImGui::Begin("main", nullptr,
+                         ImGuiWindowFlags_NoMove
+                         | ImGuiWindowFlags_NoResize
+                         | ImGuiWindowFlags_NoTitleBar
+                         | ImGuiWindowFlags_NoBringToFrontOnFocus);
+            ImGui::SetWindowPos(ImVec2(0, 0));
+            ImGui::SetWindowSize(windowSize);
+            if (ImGui::IsWindowHovered()) {
+                ImGui::Image(avatarImage.GetTexture(), {300, 300}, {1, 0}, {0, 1});
+            } else {
+                ImGui::Image(avatarImage.GetTexture(), {300, 300}, {0, 0}, {1, 1});
+            }
+            ImGui::End();
+        }
 
         // Rendering
         ImGui::Render();
